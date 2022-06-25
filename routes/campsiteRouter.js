@@ -1,11 +1,12 @@
 const express = require('express');
 const Campsite = require('../models/campsite');
-
+ 
 const campsiteRouter = express.Router();
 
 campsiteRouter.route('/')
 .get((req, res, next) => {
     Campsite.find()
+    // getting all campsites so plural 
     .then(campsites => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -16,10 +17,12 @@ campsiteRouter.route('/')
 })
 .post((req, res, next) => {
     Campsite.create(req.body)
+    // getting one campsite so singular 
     .then(campsite => {
         console.log('Campsite Created ', campsite);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
+        // returns single json 
         res.json(campsite);
     })
     .catch(err => next(err));
