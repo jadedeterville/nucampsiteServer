@@ -43,6 +43,7 @@ campsiteRouter.route('/')
 });
 
 campsiteRouter.route('/:campsiteId')
+// with IDs, just getting one campsite so singular 
 .get((req, res, next) => {
     Campsite.findById(req.params.campsiteId)
     .then(campsite => {
